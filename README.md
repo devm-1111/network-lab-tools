@@ -1,32 +1,28 @@
-# Network Lab Tools
+# Network Scanner Pro (Educational)
 
-Simple Python tool to scan a local network and detect active devices.
-
-## Description
-
-This project scans a local network (192.168.x.x) using ICMP ping requests and detects which devices are active.
-
-It is designed for learning basic networking and Python automation.
+Tool to analyze local WiFi network and detect active devices.
 
 ## Features
 
-- Detect local IP address
+- Detect local IP automatically
 - Identify network range
-- Scan all hosts in the subnet (1–254)
-- List active devices
-- Save results to a file
+- Scan active devices in LAN
+- Simple WiFi network monitoring
 
-## How to use
+## Important
 
-Run the script:
+This tool does NOT hack or access devices.
+It only detects devices that respond to network requests.
+
+## Usage
 
 ```bash
-python3 main.py
-
+python main.py
 
 Output
 Active IPs are shown in the terminal
 Results are saved in results.txt
+
 Requirements
 
 No external dependencies required. Uses only Python standard library.

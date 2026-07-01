@@ -1,22 +1,41 @@
-from utils import get_local_ip
-from scanner import scan_network
+import socket
+import os
+
+def get_local_ip():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("8.8.8.8", 80))
+    ip = s.getsockname()[0]
+    s.close()
+    return ip
+
+def get_network_base(ip):
+    return ".".join(ip.split(".")[:-1])
+
+def ping(ip):
+    return os.system(f"ping -n 1 -w 150 {ip} > NUL") == 0
+
+def scan_network(base):
+    active = []
+    for i in range(1, 255):
+        ip = f"{base}.{i}"
+        if ping(ip):
+            active.append(ip)
+    return active
+
 
 def main():
-    local_ip = get_local_ip()
-    base_ip = ".".join(local_ip.split(".")[:-1])
+    ip = get_local_ip()
+    base = get_network_base(ip)
 
-    print(f"Local IP: {local_ip}")
-    print(f"Scanning network: {base_ip}.0/24")
+    print("\n=== NETWORK INFO ===")
+    print("Local IP:", ip)
+    print("Scanning network:", base + ".0/24")
 
-    devices = scan_network(base_ip)
+    print("\n=== ACTIVE DEVICES ===")
+    devices = scan_network(base)
 
-    print("\nActive devices:")
-    for device in devices:
-        print(device)
-
-    with open("results.txt", "w") as f:
-        for device in devices:
-            f.write(device + "\n")
+    for d in devices:
+        print(d)
 
 if __name__ == "__main__":
     main()
