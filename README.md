@@ -85,15 +85,6 @@ Only active hosts are displayed in the output.
 
 ---
 
-## Future improvements
-
-- Multithreaded scanning for improved performance
-- Export results to JSON or text file
-- Device name resolution via ARP
-- Improved output formatting
-
----
-
 ## Disclaimer
 
 This tool is for educational purposes only.
