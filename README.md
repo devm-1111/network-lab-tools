@@ -1,60 +1,101 @@
-# Network Scanner Tool (Python)
+# Network Scanner Tool
 
-A simple Python tool to scan your local network and detect active devices.
+A lightweight Python tool to scan a local network and detect active devices.
+
+---
+
+## Overview
+
+This project scans a local area network (LAN) and identifies active devices using ICMP ping requests.
+
+It automatically detects the local IP address and calculates the corresponding network range.
+
+---
 
 ## Features
 
-- Detects your local IP automatically
-- Identifies your local network range (/24)
-- Scans active devices in the network
-- Shows router and connected devices
+- Automatic local IP detection
+- Network range calculation (/24 subnet)
+- Active device discovery
+- Simple command-line interface
 - Works on Windows
 
-## How it works
+---
 
-The tool gets your local IP address and scans all possible addresses in the same network (192.168.x.x) using ping requests.
+## Example Output
+Local IP: 192.168.1.245
+Scanning network: 192.168.1.0/24
 
-Only devices that respond are shown as active.
+Active devices:
+
+192.168.1.1 (Router)
+192.168.1.202
+192.168.1.237
+192.168.1.245 (This device)
+
+
+---
 
 ## Requirements
 
 - Python 3.x
 
-No external libraries required.
+No external dependencies required.
 
-## How to run
+---
 
-1. Clone the repository:
-```bash
+## Usage
 
-git clone https://github.com/devm-1111/network-lab-tools
+Clone the repository:
 
-Go into the folder:
+---
+
+## Requirements
+
+- Python 3.x
+
+No external dependencies required.
+
+---
+
+## Usage
+
+Clone the repository:
+
+git clone https://github.com/devm-1111/network-lab-tools.git
+
+
+Navigate to the project directory:
+
 cd network-lab-tools
 
+
 Run the program:
+
 python main.py
 
 
-Example output
-=== NETWORK INFO ===
-Local IP: 192.168.1.245
-Scanning network: 192.168.1.0/24
+---
 
-=== ACTIVE DEVICES ===
-192.168.1.1
-192.168.1.202
-192.168.1.237
-192.168.1.245
-192.168.1.249
+## How it works
 
-Disclaimer
+The tool sends ICMP echo requests (ping) to all IP addresses in the local subnet and checks which hosts respond.
+
+Only active hosts are displayed in the output.
+
+---
+
+## Future improvements
+
+- Multithreaded scanning for improved performance
+- Export results to JSON or text file
+- Device name resolution via ARP
+- Improved output formatting
+
+---
+
+## Disclaimer
 
 This tool is for educational purposes only.
-It does not hack, attack, or access any device. It only detects devices that respond to network requests.
-
-Future improvements
-Faster scanning using threads
-Export results to JSON or TXT
-Better device identification
-Improved UI output
+It does not exploit, attack, or access devices.
+It only detects devices that respond to network requests.
