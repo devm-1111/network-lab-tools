@@ -1,5 +1,7 @@
 import socket
 import os
+import json
+
 
 def get_local_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -8,11 +10,14 @@ def get_local_ip():
     s.close()
     return ip
 
+
 def get_network_base(ip):
     return ".".join(ip.split(".")[:-1])
 
+
 def ping(ip):
     return os.system(f"ping -n 1 -w 150 {ip} > NUL") == 0
+
 
 def scan_network(base):
     active = []
@@ -28,14 +33,33 @@ def main():
     base = get_network_base(ip)
 
     print("\n=== NETWORK INFO ===")
-    print("Local IP:", ip)
-    print("Scanning network:", base + ".0/24")
+    print(f"Local IP: {ip}")
+    print(f"Scanning network: {base}.0/24\n")
 
-    print("\n=== ACTIVE DEVICES ===")
     devices = scan_network(base)
 
+    results = []
+
+    print("\n=== ACTIVE DEVICES ===")
+
     for d in devices:
-        print(d)
+        if d == "192.168.1.1":
+            label = "Router"
+        elif d == ip:
+            label = "This device (YOU)"
+        else:
+            label = "Device"
+
+        print(f"{d} - {label}")
+
+        results.append({
+            "ip": d,
+            "type": label
+        })
+
+    with open("results.json", "w") as f:
+        json.dump(results, f, indent=4)
+
 
 if __name__ == "__main__":
     main()
