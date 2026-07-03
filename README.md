@@ -90,3 +90,9 @@ Only active hosts are displayed in the output.
 This tool is for educational purposes only.
 It does not exploit, attack, or access devices.
 It only detects devices that respond to network requests.
+
+## Support
+
+If this project was useful to you and you'd like to support future development, you can support my work on Patreon.
+
+Patreon: https://patreon.com/ProHacks111?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink
